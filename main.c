@@ -7,4 +7,5 @@ int main()
 	printf("Ysfw");
 	printf("Ysfw");
 	printf("Ysfw");
+	printf("yasta\n");
 }
