@@ -9,6 +9,7 @@ static const char specialities[100][10000] = {
 {"Genetics and Genomics"}, {"Pathology"}, {"Pediatrics"}, {"Preventive Medicine"}, {"Psychiatry"}, {"Radiology"}
 };
 
+// Making struct "doctors" (This is just a sample to try my code)
 struct doctors {
 	char name[1000];
 	char speciality[1000];
@@ -26,6 +27,7 @@ void search_doctor(struct doctors arr[], int size) // function takes array of st
 	// Changing the last character in the user input from '\n' to null-terminator
 	if (search[strlen(search)-1] == '\n') search[strlen(search)-1] = '\0';
 	// The actual search procedures
+	int found_count = 0;
 	for (int i = 0; i < size; i++)
 	{
 		// Getting every doctor's properties (name, speciality, etc) and putting them in an array of size 4
@@ -40,10 +42,12 @@ void search_doctor(struct doctors arr[], int size) // function takes array of st
 		for (int j = 0; j < 4; j++)
 		{
 			// Comparing with the lowercase status to see if the user input search is contained in any property
-			char *ptr = strstr(strlwr(doctor[j]), strlwr(search));
+			char *ptr = strdup(doctor[j]);
+			ptr = strstr(strlwr(ptr), strlwr(search));
 			if (ptr != NULL)
 			{
 				found = true;
+				found_count ++;
 				break;
 			}
 		}
@@ -57,6 +61,7 @@ void search_doctor(struct doctors arr[], int size) // function takes array of st
 			printf("visita: %s\n", doctor[3]);
 		}
 	}
+	if (found_count == 0) printf("!!!! There were no results found !!!!\nTRY AGAIN.\n");
 
 	
 }
