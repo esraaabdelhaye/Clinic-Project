@@ -3,12 +3,6 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-static const char specialities[100][10000] = {
-	{"Allergy and Immunology"}, {"Neurology"}, {"Cardiology"}, {"Otolaryngology"},
-{"Dermatology"}, {"Family Medicine"}, {"Forensic Pathology"}, {"Obstetrics and Gynecology"},
-{"Genetics and Genomics"}, {"Pathology"}, {"Pediatrics"}, {"Preventive Medicine"}, {"Psychiatry"}, {"Radiology"}
-};
-
 // Making struct "doctors" (This is just a sample to try my code)
 struct doctors {
 	char name[1000];
@@ -71,10 +65,11 @@ int main()
 	// This is just a sample to show how it works
 	struct doctors d1 = {"Abdelrahman Nabil", "Neurology", "10 Al Zarkashi, Al Azaritah WA Ash Shatebi, Bab Sharqi, Alexandria Governorate 5424011", "120.53"};
 	struct doctors d2 = {"Abdelrahman Fathy", "Cardiology", "Green Valley Medical Center, 245 Elm Street, Springfield, IL 62704, United States", "356.72"};
-	struct doctors d3 = {"Mostafa Fathy", "Genetics and Genomics", "Sunrise Dental Clinic, 78 Orchard Road, Singapore 238896", "842.15"};
+	struct doctors d3 = {"Mostafa Fathy", "Dermatology", "Sunrise btngana Clinic, 78 Orchard Road, Singapore 238896", "842.15"};
 	struct doctors d4 = {"Yousef Waleed", "Pediatrics", "Healthy Life Veterinary Clinic, 120-8 Hwarang-ro, Gyeongju-si, Gyeongsangbuk-do, South Korea", "423.89"};
-	struct doctors d5 = {"Jana Rashed", "Neurology", "St. Thomas Family Clinic, 14 Abbey Road, London NW8 9AY, United Kingdom", "978.34"};
-	struct doctors d6 = {"Israa Abdelhayee", "Forensic Patholog", "Clínica Médica Los Ángeles, Av. Reforma 125, Ciudad de México, CDMX 06600, Mexico", "217.56"};
+	struct doctors d5 = {"Jana Rashed", "Neurology", "St. Thomas Clinic, 14 Abbey Road, London NW8 9AY, United Kingdom", "978.34"};
+	struct doctors d6 = {"Israa Abdelhayee", "Obstetrics and Gynecology", "Clínica Médica Los Ángeles, Av. Reforma 125, Ciudad de México, CDMX 06600, Mexico", "217.56"};
+	struct doctors d7 = {"Youmna F.Ali", "Psychiatry", "Serenity Psychiatry Center, 412 Maplewood Avenue, Suite 7B, Brighton, MA 02135, United States", "200.00"};
 	struct doctors arr[10];
 	arr[0] = d1;
 	arr[1] = d2;
@@ -82,5 +77,7 @@ int main()
 	arr[3] = d4;
 	arr[4] = d5;
 	arr[5] = d6;
-	search_doctor(arr, 6);
+	arr[6] = d7;
+	printf("%d\n", *(&arr + 1) - arr);
+	while (1) search_doctor(arr, 7);
 }
