@@ -2,5 +2,6 @@
 
 int main()
 {
-	printf("This line is from the main file");
+	printf("This line is from the main file\n");
+	printf("btngan\n");
 }
