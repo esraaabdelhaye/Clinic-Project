@@ -30,9 +30,9 @@ int numberOfdoctors=0;
 //------------------- Functions Reference + Notes -------------------------
 
 //This Function Reads UsersData. We will call it multiple times. 
-void ReadUsersData();
+int ReadUsersData();
 //This Function Reads DoctorsData. We will call it at the start of the program only. 
-void ReadDoctorsData();
+int ReadDoctorsData();
 
 /*
 Note That most of the error handling in these two functions
@@ -53,7 +53,7 @@ int main()
 
 
 //------------------- Functions -------------------------
-void ReadUsersData()
+int ReadUsersData()
 {
 	FILE *UsersData;
 	UsersData = fopen("User_Data.txt", "r");
@@ -66,21 +66,21 @@ void ReadUsersData()
 	do
 	{
 		read = fscanf(UsersData,
-			        	"%c,%250[^,],%c,%250[^,],%c,%250[^,]\n",
+			        	"%250[^,],%250[^,],%250[^\n]",
 						&Users[numberOfUsers].Name,
 					 	&Users[numberOfUsers].Username,
 					 	&Users[numberOfUsers].Password);
 
-		if (read = 3)
+		if (read == 3)
 		{
 			numberOfUsers++;
 		}
-		else if (read != 3 && !feof(UsersData))
+		if (read != 3 && !feof(UsersData))
 		{
 			printf("Incorrect File Format !\n");
 			return 1;
 		}
-		else if(ferror(UsersData)){
+		if(ferror(UsersData)){
 			printf("Error Reading File !\n");
 			return 1;
 		}
@@ -90,7 +90,7 @@ void ReadUsersData()
 	fclose(UsersData);
 }
 
-void ReadDoctorsData(){
+int ReadDoctorsData(){
 	FILE *DoctorsData;
 	DoctorsData = fopen("Doctors_Data.txt", "r");
 	if (DoctorsData == NULL)
@@ -103,22 +103,22 @@ void ReadDoctorsData(){
 	do
 	{
 		read = fscanf(DoctorsData,
-			        	"%c,%250[^,],%c,%250[^,],%c,%250[^,],%c,%250[^,]\n",
+			        	"%250[^,],%250[^,],%250[^,],%250[^\n]",
 						&Doctors[numberOfdoctors].Name,
 					 	&Doctors[numberOfdoctors].Speciality,
 					 	&Doctors[numberOfdoctors].Clinic_address,
 					 	&Doctors[numberOfdoctors].Visita);
 
-		if (read = 4)
+		if (read == 4)
 		{
 			numberOfdoctors++;
 		}
-		else if (read != 4 && !feof(DoctorsData))
+		if (read != 4 && !feof(DoctorsData))
 		{
 			printf("Incorrect File Format !\n");
 			return 1;
 		}
-		else if(ferror(DoctorsData)){
+		if(ferror(DoctorsData)){
 			printf("Error Reading File !\n");
 			return 1;
 		}
