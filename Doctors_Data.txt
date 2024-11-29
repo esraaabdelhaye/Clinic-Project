@@ -1,10 +1,10 @@
-Dr. Emily Carter,Cardiologist,123 Heartland Ave,$150
-Dr. James Patel,Orthopedic,456 Bone Street,$120
-Dr. Sophia Chen,Dermatologist,789 SkinCare Blvd,$100
-Dr. Liam Nguyen,Pediatrician,321 Sunshine Lane,$90
-Dr. Olivia Johnson,Neurologist,654 Brainwave Way,$180
-Dr. Ethan Brown,General Practitioner,987 Healthy Ave,$80
-Dr. Ava Davis,Ophthalmologist,222 Vision Rd,$110
-Dr. Noah Wilson,Dentist,333 Bright Smile Dr,$95
-Dr. Isabella Martinez,ENT Specialist,444 Clear Sound St,$130
-Dr. Lucas Green,Oncologist,555 Hope Clinic Ln,$200
+Emily Carter,Cardiologist,123 Heartland Ave,150
+James Patel,Orthopedic,456 Bone Street,120
+Sophia Chen,Dermatologist,789 SkinCare Blvd,100
+Liam Nguyen,Pediatrician,321 Sunshine Lane,90
+Olivia Johnson,Neurologist,654 Brainwave Way,180
+Ethan Brown,General Practitioner,987 Healthy Ave,80
+Ava Davis,Ophthalmologist,222 Vision Rd,110
+Noah Wilson,Dentist,333 Bright Smile Dr,95
+Isabella Martinez,ENT Specialist,444 Clear Sound St,130
+Lucas Green,Oncologist,555 Hope Clinic Ln,200
