@@ -95,7 +95,11 @@ void search_doctor(struct doctors doctors_arr[], int size) // function takes arr
 			printf("visita: %.2lf\n", doctors_arr[i].visita);
 		}
 	}
-	if (found_count == 0) printf("!!!! There were no results found !!!!\n!!!!          TRY AGAIN          !!!!\n");
+	if (found_count == 0)
+	{
+		printf("!!!! There were no results found !!!!\n!!!!          TRY AGAIN          !!!!\n");
+		goto start;
+	}
 	end:
 	{
 		printf("");
