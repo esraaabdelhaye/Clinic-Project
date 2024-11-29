@@ -35,20 +35,28 @@ int ReadUsersData();
 int ReadDoctorsData();
 
 /*
-Note That most of the error handling in these two functions
+Most of the error handling in these two functions
 is Redundunt and only exists until we finish testing 
 As this only Checks for errors in formatting/existance of the file
 which obviouslly won't happen as we're the ones who put the data
 with this formatting.
 
-Also Note That User's will have a maximum for name,username,passwords
+User's will have a maximum for name,username,passwords
 I've Set that Max to 250 for the mean time.
+
+Both Functions Return 1 in Case of an error.
+
 */
 
 
 int main()
 {
-
+//Testing Example
+ReadUsersData();
+if(ReadUsersData()){
+	return 1;
+}
+printf("%s",Users[0].Name);
 }
 
 
