@@ -4,17 +4,59 @@
 #include <stdlib.h>
 
 // Making struct "doctors" (This is just a sample to try my code)
+void delete_buffer()
+{
+    char garbage[1000];
+    scanf("%[^\n]%*c", garbage);
+}
+int get_integer(char *str, int *n)
+{
+    bool valid = false;
+    while (!valid)
+    {
+        printf("%s", str);
+        char newline_check;
+        int checker = scanf("%d%c", n, &newline_check);
+        if (checker != 2 || newline_check != '\n')
+        {
+            delete_buffer();
+            printf("THAT'S NOT VALID. TRY AGAIN.\n");
+        }
+        else valid = true;
+    }
+    return *n;
+}
+
+int get_double(char *str, double *n)
+{
+    bool valid = false;
+    while (!valid)
+    {
+        printf("%s", str);
+        char newline_check;
+        int checker = scanf("%lf%c", n, &newline_check);
+        if (checker != 2 || newline_check != '\n')
+        {
+            delete_buffer();
+            printf("THAT'S NOT VALID. TRY AGAIN.\n");
+        }
+        else valid = true;
+    }
+    return *n;
+}
+
 struct doctors {
-	char name[1000];
-	char speciality[1000];
-	char clinic_address[1000];
-	double visita;
+	char Name[1000];
+	char Speciality[1000];
+	char Clinic_address[1000];
+	double Visita;
 };
 
 void search_doctor(struct doctors doctors_arr[], int size) // function takes array of structs of "doctors" and its size
 {
 	// variable containing the search the user inputs
 	char search[1000];
+	int choice;
 	start:
 	printf(":=======================================================:\n");
 	printf("[1] Search by Name\n");
@@ -24,12 +66,11 @@ void search_doctor(struct doctors doctors_arr[], int size) // function takes arr
 	printf("[5] Show all doctors\n");
 	printf("[6] Logout\n");
 	printf(":=======================================================:\n");
-	printf("YOUR CHOICE : ");
-	int choice;
+	get_integer("YOUR CHOICE : ", &choice);
 	bool byname = false, byspeciality = false, byvisita = false, byaddress = false, byall = false, logout = false;
-	scanf("%d%*c", &choice);
 	double visita_from, visita_to;
 	printf(":=======================================================:\n");
+	getting_property:
 	switch (choice)
 	{
 		case 1:
@@ -45,10 +86,8 @@ void search_doctor(struct doctors doctors_arr[], int size) // function takes arr
 			byaddress = true;
 			break;
 		case 4:
-			printf("VISITA RANGE - FROM : ");
-			scanf("%lf%*c", &visita_from);
-			printf("VISITA RANGE - TO : ");
-			scanf("%lf%*c", &visita_to);
+			get_double("VISITA RANGE - FROM : ", &visita_from);
+			get_double("VISITA RANGE - TO : ", &visita_to);
 			byvisita = true;
 			break;
 		case 5:
@@ -76,29 +115,29 @@ void search_doctor(struct doctors doctors_arr[], int size) // function takes arr
 		// initializing boolean value variable "found" to false which represents that target was found
 		bool found = false;
 		char *property = NULL;
-		if (byname) property = strdup(doctors_arr[i].name);
-		else if (byspeciality) property = strdup(doctors_arr[i].speciality);
-		else if (byaddress) property = strdup(doctors_arr[i].clinic_address);
+		if (byname) property = strdup(doctors_arr[i].Name);
+		else if (byspeciality) property = strdup(doctors_arr[i].Speciality);
+		else if (byaddress) property = strdup(doctors_arr[i].Clinic_address);
 		// Comparing with the lowercase status to see if the user input search is contained in any property
 		property = strstr(strlwr(property), strlwr(search));
 		if (property != NULL) found = true;
-		else if (byvisita && doctors_arr[i].visita >= visita_from && doctors_arr[i].visita <= visita_to) found = true;
+		else if (byvisita && doctors_arr[i].Visita >= visita_from && doctors_arr[i].Visita <= visita_to) found = true;
 		else if (byall) found = true;
 		if (found)
 		{
 			// Showing the results that were found
 			found_count ++;
 			printf("-----------------------------\n");
-			printf("name: %s\n", doctors_arr[i].name);
-			printf("speciality: %s\n", doctors_arr[i].speciality);
-			printf("clinic address: %s\n", doctors_arr[i].clinic_address);
-			printf("visita: %.2lf\n", doctors_arr[i].visita);
+			printf("name: %s\n", doctors_arr[i].Name);
+			printf("speciality: %s\n", doctors_arr[i].Speciality);
+			printf("clinic address: %s\n", doctors_arr[i].Clinic_address);
+			printf("visita: %.2lf\n", doctors_arr[i].Visita);
 		}
 	}
 	if (found_count == 0)
 	{
 		printf("!!!! There were no results found !!!!\n!!!!          TRY AGAIN          !!!!\n");
-		goto start;
+		goto getting_property;
 	}
 	end:
 	{
