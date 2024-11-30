@@ -65,7 +65,7 @@ void signup(){
 	}
 	// we couldn't access the patients file
 	if(getNumOfPatients() == -1) return;
-	printf("%d\n", getNumOfPatients() );
+	//printf("%d\n", getNumOfPatients() );
 	struct Patient newPatient;
 	printf("Username: ");
 	fgets(newPatient.username,50,stdin);
