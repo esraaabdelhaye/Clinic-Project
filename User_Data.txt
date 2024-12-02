@@ -1,10 +1,5 @@
-Emily Carter,Cardiologist,123HeartlandAve
-Ysfw,Yousef Walid,sadhasuhdikau98979723@@@1111ADSAS
-Ysfw,Yousef Test2,asdjhsdahjg@@@akdgskad*HASDKJ1223768
-Ysfw,Yousef Test2,asdjhsdahjg@@@akdgskad*HASDKJ1223768
-Ysfw,Yousef Test2,asdjhsdahjg@@@akdgskad*HASDKJ1223768
-Ysfw,Yousef Test2,asdjhsdahjg@@@akdgskad*HASDKJ1223768
-Ysfw,Yousef Test2,asdjhsdahjg@@@akdgskad*HASDKJ1223768
-Ysfw,Yousef Test2,asdjhsdahjg@@@akdgskad*HASDKJ1223768
-Ysfw,Yousef Test2,asdjhsdahjg@@@akdgskad*HASDKJ1223768
-Ysfw,Yousef Test2,asdjhsdahjg@@@akdgskad*HASDKJ1223768
+EmilyCarter,Cardiologist,123HeartlandAve
+EmilyCarter,Cardiologist,123HeartlandAve
+EmilyCarter,Cardiologist,123HeartlandAve
+Ysfw,tesring again for double count,Yousef11@
+ysfw,yousef,$Y%^!$123
