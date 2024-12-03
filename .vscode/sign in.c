@@ -69,7 +69,7 @@ void login() {
         takepassword(password);
 
         // Authenticate user
-        int authResult = authenticateUser(username, password)
+        int authResult = authenticateUser(username, password);
 
         if (authResult == 1) {
             printf("\nLogged in successfully!\n");
