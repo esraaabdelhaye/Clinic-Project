@@ -21,7 +21,7 @@ typedef struct {
 	char Speciality[1000];
 	char Clinic_address[1000];
 	double Visita;
-}Doctor;
+} Doctor;
 //Defining An array of structs for Doctors to put thier data.
 Doctor Doctors [10];
 //Tracking The numbers of existing Doctors.
