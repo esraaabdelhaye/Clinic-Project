@@ -56,6 +56,7 @@ void login() {
     int choice;
 
     printf("\n\t\t\t\t\t\t========== Login ==========\n");
+    int authResult;
     do {
         clearInputBuffer(); // Clear input buffer
 
@@ -69,7 +70,7 @@ void login() {
         takepassword(password);
 
         // Authenticate user
-        int authResult = authenticateUser(username, password);
+        authResult = authenticateUser(username, password);
 
         if (authResult == 1) {
             printf("\nLogged in successfully!\n");
