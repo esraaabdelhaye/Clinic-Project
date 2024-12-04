@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "Search.c" 
-//Baiscally Search includes login, login includes signup, signup includes readfunctions
-//which makes including search only in main valid!
+#include "Search.c"
+// Baiscally Search includes login, login includes signup, signup includes readfunctions
+// which makes including search only in main valid!
 
 int main()
 {
@@ -33,10 +33,12 @@ Menu:
             {
             case 1:
                 login();
-                if(LoginComplete){
-                search_doctor(numberOfdoctors);
+                if (LoginComplete)
+                {
+                    search_doctor(numberOfdoctors);
                 }
-                else{
+                else
+                {
                     printf("Username Not Registered. SignUp first.");
                     goto Menu;
                 }
@@ -44,7 +46,7 @@ Menu:
             case 2:
                 printf("Goodbye!");
                 return 0;
-                
+
             default:
                 printf("Invalid Choice! Please enter a number between 1 and 3.\n");
                 continue;
@@ -67,13 +69,22 @@ Menu:
             {
             case 1:
                 Signup();
-                if(numberOfUsers>=10)
+                if (numberOfUsers >= 10)
                 {
                     goto Menu;
                 }
                 break;
             case 2:
                 login();
+                if (LoginComplete)
+                {
+                    search_doctor(numberOfdoctors);
+                }
+                else
+                {
+                    printf("Username Not Registered. SignUp first.");
+                    goto Menu;
+                }
                 search_doctor(numberOfdoctors);
                 break;
             case 3:
