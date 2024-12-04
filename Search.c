@@ -171,7 +171,6 @@ getting_property:
 	}
 end:
 {
-	printf("Logging Out...\n");
-	printf("Sad To See You Go :*C\n");
+	printf("\nLogging Out...\n");
 }
 }

@@ -1,6 +1,6 @@
 #include "SignUp.c"
 
-int getLoginPassword(char *Pass, int usernumber)
+int getLoginPassword(char *Pass)
 {
 
     int i = 0;
@@ -85,7 +85,7 @@ void login()
         printf("Enter your username: ");
         fgets(Username, sizeof(Username), stdin);
         Username[strcspn(Username, "\n")] = '\0';
-        getLoginPassword(Password, numberOfUsers - 1);
+        getLoginPassword(Password);
         // Authenticate user
 
         if (LoginVA(Username,Password))

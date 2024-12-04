@@ -46,7 +46,7 @@ of the two ways.
 Then it gets stored in the array That's pointer was passed to the function.
 
 */
-int getPassword(char *Pass, int usernumber)
+int getPassword(char *Pass)
 {
 
 	int i = 0;
@@ -157,7 +157,7 @@ get_input:
 	fgets(PatientfullName, 250, stdin);
 	PatientfullName[strlen(PatientfullName) - 1] = '\0';
 
-	getPassword(PatientPassword, CurrentUser);
+	getPassword(PatientPassword);
 
 	UsernameVerified = UsernameCheckForExistance(PatientUsername);
 
