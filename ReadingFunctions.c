@@ -92,7 +92,7 @@ int ReadUsersData()
 	}
 
 	fclose(UsersData);
-	return numberOfUsers - 1;
+	return 0;
 }
 
 int ReadDoctorsData(){
