@@ -6,8 +6,8 @@
 //Defining A struct for Users.
 typedef struct
 {
-	char Name[250];
 	char Username[250];
+	char Name[250];
 	char Password[250];
 } User;
 //Defining An array of structs for Users to put thier data.
@@ -21,7 +21,7 @@ typedef struct {
 	char Speciality[1000];
 	char Clinic_address[1000];
 	double Visita;
-} Doctor;
+}Doctor;
 //Defining An array of structs for Doctors to put thier data.
 Doctor Doctors [10];
 //Tracking The numbers of existing Doctors.
@@ -33,6 +33,14 @@ int numberOfdoctors=0;
 int ReadUsersData();
 //This Function Reads DoctorsData. We will call it at the start of the program only. 
 int ReadDoctorsData();
+
+
+void clearInputBuffer()
+{
+	int c;
+	while ((c = getchar()) != '\n' && c != EOF)
+		;
+}
 
 /*
 Most of the error handling in these two functions
@@ -60,18 +68,20 @@ int ReadUsersData()
 
 		return -1;
 	}
-	int read = 0;
-	do
-	{
-		read = fscanf(UsersData,
-			        	"%250[^,],%250[^,],%250[^\n]",
-						&Users[numberOfUsers].Name,
-					 	&Users[numberOfUsers].Username,
-					 	&Users[numberOfUsers].Password);
 
+	while (!feof(UsersData))
+	{
+		int read = 0;int i = 0;
+		read = fscanf(UsersData,
+			        	"%250[^,],%250[^,],%250[^\n]%*c",
+						&Users[numberOfUsers].Username,
+						&Users[numberOfUsers].Name,
+					 	&Users[numberOfUsers].Password);
+		
 		if (read == 3)
 		{
 			numberOfUsers++;
+			continue;
 		}
 		if (read != 3 && !feof(UsersData))
 		{
@@ -81,7 +91,7 @@ int ReadUsersData()
 			return -1;
 		}
 
-	} while (!feof(UsersData));
+	}
 
 	fclose(UsersData);
 	return numberOfUsers-1;
