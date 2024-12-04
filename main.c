@@ -4,6 +4,13 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+typedef struct {
+	char Name[1000];
+	char Speciality[1000];
+	char Clinic_address[1000];
+	double Visita;
+} Doctors;
+
 void delete_buffer()
 {
 	char garbage[1000];
@@ -47,7 +54,7 @@ double get_double(char *str, double *n)
 	return *n;
 }
 
-void search_doctor(int numberOfdoctors) // function takes array of structs of "Doctors" and its size
+void search_doctor(Doctors Doctors[], int numberOfdoctors) // function takes array of structs of "Doctors" and its size
 {
 	// variable containing the search the user inputs
 	char search[1000];
