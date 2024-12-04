@@ -4,12 +4,6 @@
 #include <conio.h>
 #include "ReadingFunctions.c"
 
-void clearInputBuffer()
-{
-	int c;
-	while ((c = getchar()) != '\n' && c != EOF);
-}
-
 // this function Should only run when validations are complete and we want to write User's Data from the array
 //  Returns -1 in case of an error
 
@@ -19,10 +13,10 @@ int UsernameCheckForExistance(char Searching[])
 	{
 		if (!strcmp(Searching, Users[i].Username))
 		{
-			return 0; // found
+			return 1; 
 		}
 	}
-	return 1; // not found
+	return 0; 
 }
 int PasswordCheckForExistance(char Searching[])
 {
@@ -30,10 +24,10 @@ int PasswordCheckForExistance(char Searching[])
 	{
 		if (!strcmp(Searching, Users[i].Password))
 		{
-			return 0; // found
+			return 1; 
 		}
 	}
-	return 1; // not found
+	return 0; 
 }
 // This Password Check isn't really required Here,but would be useful in login
 
@@ -161,7 +155,7 @@ get_input:
 
 	UsernameVerified = UsernameCheckForExistance(PatientUsername);
 
-	if (UsernameVerified)
+	if (!UsernameVerified)
 	{
 		strcpy(Users[CurrentUser].Username, PatientUsername);
 		strcpy(Users[CurrentUser].Name, PatientfullName);
