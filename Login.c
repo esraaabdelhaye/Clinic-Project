@@ -1,4 +1,5 @@
 #include "SignUp.c"
+#include <stdbool.h>
 
 int getLoginPassword(char *Pass)
 {
@@ -55,12 +56,14 @@ StartOfgetpass:
 }
 
 //Previous Check for existance functions but merged as in login we are checking that this exact username exist and the password associated to it is correct
+bool UsernameFound =false;
 int LoginVA(char Username[],char Password[])
 {
     for (int i = 0; i < numberOfUsers; i++)
     {
         if (!strcmp(Username, Users[i].Username))
         {
+            UsernameFound = true;
             if (!strcmp(Password, Users[i].Password))
                 {
                     return 1;
@@ -69,34 +72,37 @@ int LoginVA(char Username[],char Password[])
     }
     return 0;
 }
-
+bool LoginComplete;
 void login()
 {
+    LoginComplete =false;
     char Username[250];
     char Password[250];
     int choice;
 
     printf("\n\t\t\t\t\t\t========== Login ==========\n");
-    int authResult = 0;
-    do
-    {
         // clearInputBuffer(); // Clear input buffer
 
         printf("Enter your username: ");
         fgets(Username, sizeof(Username), stdin);
         Username[strcspn(Username, "\n")] = '\0';
+        PasswordEntry:
         getLoginPassword(Password);
         // Authenticate user
 
         if (LoginVA(Username,Password))
         {
             printf("\nLogged in successfully!\n");
+            LoginComplete = true;
         }
-        else
+        else if ((!LoginVA(Username,Password))&&UsernameFound)
         {
-            printf("\nInvalid Username or password.\n");
+            printf("\nInvalid password.\n");
+            goto PasswordEntry;
         }
-    } while (LoginVA(Username,Password)!= 1); // Loop until login is successful
+        else{
+            LoginComplete = false;
+        }
 }
 
 

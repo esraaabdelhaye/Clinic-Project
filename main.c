@@ -33,7 +33,13 @@ Menu:
             {
             case 1:
                 login();
+                if(LoginComplete){
                 search_doctor(numberOfdoctors);
+                }
+                else{
+                    printf("Username Not Registered. SignUp first.");
+                    goto Menu;
+                }
                 break;
             case 2:
                 printf("Goodbye!");
