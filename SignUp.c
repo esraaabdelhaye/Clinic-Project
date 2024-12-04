@@ -7,8 +7,7 @@
 void clearInputBuffer()
 {
 	int c;
-	while ((c = getchar()) != '\n' && c != EOF)
-		;
+	while ((c = getchar()) != '\n' && c != EOF);
 }
 
 // this function Should only run when validations are complete and we want to write User's Data from the array

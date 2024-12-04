@@ -141,7 +141,7 @@ getting_property:
 	}
 	else
 	{
-	ContinueChoice :
+	ContinueChoice:
 		printf("Do You Want to Search Again?\n\n");
 		printf("1. Search With Same Criteria\n");
 		printf("2. Search With Different Criteria\n");
