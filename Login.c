@@ -14,15 +14,15 @@ StartOfgetpass:
     scanf("%c", &showPassword);
     clearInputBuffer(); // Clear input buffer
 
-    printf("Enter your password (at least one symbol and one numeric value required): ");
     if (showPassword == 'Y' || showPassword == 'y')
     {
+        printf("Enter your password : ");
         fgets(password, 250, stdin);
         password[strlen(password) - 1] = '\0';
     }
     else if (showPassword == 'N' || showPassword == 'n')
     {
-
+        printf("Enter your password : ");
         while (1)
         {
 
@@ -47,6 +47,10 @@ StartOfgetpass:
             }
         }
     }
+    	else{
+		printf("Wrong Choice. Try again.");
+		goto StartOfgetpass;
+	}
     strcpy(Pass, password);
 }
 

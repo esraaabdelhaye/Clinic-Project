@@ -54,25 +54,27 @@ int getPassword(char *Pass, int usernumber)
 	char ch;
 	int hasNumeric; // Flag to track if password contains at least one numeric value
 	int hasSymbol;	// Flag to track if password contains at least one symbol
-StartOfgetpass:
+	StartOfgetpass:
 
 	hasNumeric = 0;
 	hasSymbol = 0;
 	// Show option to display password
+
 	printf("\nDo you want to show your password? (Y for Yes, N for No): ");
 	char showPassword;
 	scanf("%c", &showPassword);
 	clearInputBuffer(); // Clear input buffer
 
-	printf("Enter your password (at least one symbol and one numeric value required): ");
+	
 	if (showPassword == 'Y' || showPassword == 'y')
 	{
+		printf("Enter your password (at least one symbol and one numeric value required): ");
 		fgets(password, 250, stdin);
 		password[strlen(password) - 1] = '\0';
 	}
 	else if (showPassword == 'N' || showPassword == 'n')
 	{
-
+		printf("Enter your password (at least one symbol and one numeric value required): ");
 		while (1)
 		{
 
@@ -96,6 +98,10 @@ StartOfgetpass:
 				printf("*");
 			}
 		}
+	}
+	else{
+		printf("Wrong Choice. Try again.");
+		goto StartOfgetpass;
 	}
 	for (int i = 0; i < strlen(password); i++)
 	{
