@@ -13,7 +13,7 @@ int main()
     }
 
     int choice;
-
+Menu:
     printf("\n\t\t\t\t========== Welcome to the  System ==========\n");
 
     printf("\nPlease choose your operation:\n");
@@ -60,6 +60,9 @@ int main()
             {
             case 1:
                 Signup();
+                if(numberOfUsers>=10){
+                    goto Menu;
+                }
                 break;
             case 2:
                login();
