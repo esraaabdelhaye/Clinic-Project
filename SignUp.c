@@ -66,13 +66,13 @@ int getPassword(char *Pass, int usernumber)
 	clearInputBuffer(); // Clear input buffer
 
 	
-	if (showPassword == 'Y' || showPassword == 'y')
+	if (tolower(showPassword) == 'y')
 	{
 		printf("Enter your password (at least one symbol and one numeric value required): ");
 		fgets(password, 250, stdin);
 		password[strlen(password) - 1] = '\0';
 	}
-	else if (showPassword == 'N' || showPassword == 'n')
+	else if (tolower(showPassword) == 'n')
 	{
 		printf("Enter your password (at least one symbol and one numeric value required): ");
 		while (1)

@@ -13,13 +13,13 @@ StartOfgetpass:
     scanf("%c", &showPassword);
     clearInputBuffer(); // Clear input buffer
 
-    if (showPassword == 'Y' || showPassword == 'y')
+    if (tolower(showPassword) == 'y')
     {
         printf("Enter your password : ");
         fgets(password, 250, stdin);
         password[strlen(password) - 1] = '\0';
     }
-    else if (showPassword == 'N' || showPassword == 'n')
+    else if (tolower(showPassword) == 'n')
     {
         printf("Enter your password : ");
         while (1)

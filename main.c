@@ -41,8 +41,9 @@ Menu:
                 
             default:
                 printf("Invalid Choice! Please enter a number between 1 and 3.\n");
+                continue;
             }
-        } while (choice != 3);
+        } while (1);
     }
     else
     {
@@ -60,20 +61,22 @@ Menu:
             {
             case 1:
                 Signup();
-                if(numberOfUsers>=10){
+                if(numberOfUsers>=10)
+                {
                     goto Menu;
                 }
                 break;
             case 2:
-               login();
-               search_doctor(numberOfdoctors);
+                login();
+                search_doctor(numberOfdoctors);
                 break;
             case 3:
                 printf("Goodbye!");
                 return 0;
             default:
                 printf("Invalid Choice! Please enter a number between 1 and 3.\n");
+                continue;
             }
-        } while (choice != 3);
+        } while (1);
     }
 }

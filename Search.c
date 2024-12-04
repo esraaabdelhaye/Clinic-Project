@@ -47,7 +47,7 @@ double get_double(char *str, double *n)
 	return *n;
 }
 
-void search_doctor(int size) // function takes array of structs of "Doctors" and its size
+void search_doctor(int numberOfdoctors) // function takes array of structs of "Doctors" and its size
 {
 	// variable containing the search the user inputs
 	char search[1000];
@@ -68,8 +68,8 @@ getting_property:
 	switch (choice)
 	{
 	case 1:
-		byname = true;
 		printf("Name : ");
+		byname = true;
 		break;
 	case 2:
 		printf("Speciality : ");
@@ -92,38 +92,29 @@ getting_property:
 		goto end;
 		break;
 	default:
-		printf("Invalid Option\n");
+		printf("Invalid Option. Try Again\n");
 		goto start;
 	}
 	// Getting the user input
-	if (!byall && !byvisita)
-	{
-		fgets(search, 1000, stdin);
+	if (!byall && !byvisita) fgets(search, 1000, stdin);
 		// Changing the last character in the user input from '\n' to null-terminator
-		search[strlen(search) - 1] = '\0';
-	}
+	if (search[strlen(search)-1] == '\n') search[strlen(search)-1] = '\0';
 	// The actual search procedures
 	int found_count = 0;
 	int ContinueChoice;
 	for (int i = 0; i < numberOfdoctors; i++)
 	{
-		bool found = false;
 		// initializing boolean value variable "found" to false which represents that target was found
+		bool found = false;
 		char *property = NULL;
-		if (byname)
-			property = strdup(Doctors[i].Name);
-		else if (byspeciality)
-			property = strdup(Doctors[i].Speciality);
-		else if (byaddress)
-			property = strdup(Doctors[i].Clinic_address);
+		if (byname) property = strdup(Doctors[i].Name);
+		else if (byspeciality) property = strdup(Doctors[i].Speciality);
+		else if (byaddress) property = strdup(Doctors[i].Clinic_address);
 		// Comparing with the lowercase status to see if the user input search is contained in any property
-		property = strstr(strlwr(property), strlwr(search));
-		if (property != NULL)
-			found = true;
-		else if (byvisita && Doctors[i].Visita >= visita_from && Doctors[i].Visita <= visita_to)
-			found = true;
-		else if (byall)
-			found = true;
+		if (!byall && !byvisita) property = strstr(strlwr(property), strlwr(search));
+		if (property != NULL) found = true;
+		else if (byvisita && Doctors[i].Visita >= visita_from && Doctors[i].Visita <= visita_to) found = true;
+		else if (byall) found = true;
 		if (found)
 		{
 			// Showing the results that were found
@@ -143,10 +134,10 @@ getting_property:
 	else
 	{
 	ContinueChoice:
-		printf("Do You Want to Search Again? (Y for Yes, N for No): ");
+		printf("Do You Want to Search Again? (Y for Yes, L for Logout): ");
 		char search_again;
 		scanf("%c%*c", &search_again);
-		if (tolower(search_again) == 'n') goto end;
+		if (tolower(search_again) == 'l') goto end;
 		else if (tolower(search_again) == 'y')
 		{
 			printf("\n\t\t\t\t========== Search ==========\n");
@@ -180,7 +171,7 @@ getting_property:
 	}
 end:
 {
-	printf("Goodbye!\n");
+	printf("Logging Out...\n");
+	printf("Sad To See You Go :*C\n");
 }
 }
-
