@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include "ReadingFunctions.c"
+#include "Login.c"
 
 void delete_buffer()
 {
@@ -141,7 +141,7 @@ getting_property:
 	}
 	else
 	{
-	ContinueChoice:
+	ContinueChoice :
 		printf("Do You Want to Search Again?\n\n");
 		printf("1. Search With Same Criteria\n");
 		printf("2. Search With Different Criteria\n");
@@ -171,8 +171,3 @@ end:
 }
 }
 
-int main()
-{
-	ReadDoctorsData();
-	search_doctor(numberOfdoctors);
-}
