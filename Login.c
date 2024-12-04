@@ -7,7 +7,6 @@ int getLoginPassword(char *Pass, int usernumber)
     char password[250];
     char ch;
 StartOfgetpass:
-
     // Show option to display password
     printf("\nDo you want to show your password? (Y for Yes, N for No): ");
     char showPassword;
@@ -47,7 +46,8 @@ StartOfgetpass:
             }
         }
     }
-    	else{
+    else
+    {
 		printf("Wrong Choice. Try again.");
 		goto StartOfgetpass;
 	}
@@ -61,11 +61,11 @@ int LoginVA(char Username[],char Password[])
     {
         if (!strcmp(Username, Users[i].Username))
         {
-             if (!strcmp(Password, Users[i].Password))
+            if (!strcmp(Password, Users[i].Password))
                 {
                     return 1;
                 }
-            }
+        }
     }
     return 0;
 }

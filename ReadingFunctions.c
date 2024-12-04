@@ -21,11 +21,11 @@ typedef struct {
 	char Speciality[1000];
 	char Clinic_address[1000];
 	double Visita;
-}Doctor;
+} Doctor;
 //Defining An array of structs for Doctors to put thier data.
-Doctor Doctors [10];
+Doctor Doctors[10];
 //Tracking The numbers of existing Doctors.
-int numberOfdoctors=0;
+int numberOfdoctors = 0;
 
 //------------------- Functions Reference + Notes -------------------------
 
@@ -38,8 +38,7 @@ int ReadDoctorsData();
 void clearInputBuffer()
 {
 	int c;
-	while ((c = getchar()) != '\n' && c != EOF)
-		;
+	while ((c = getchar()) != '\n' && c != EOF);
 }
 
 /*
@@ -65,13 +64,12 @@ int ReadUsersData()
 	UsersData = fopen("User_Data.txt", "r");
 	if (UsersData == NULL)
 	{
-
 		return -1;
 	}
 
 	while (!feof(UsersData))
 	{
-		int read = 0;int i = 0;
+		int read = 0, i = 0;
 		read = fscanf(UsersData,
 			        	"%250[^,],%250[^,],%250[^\n]%*c",
 						&Users[numberOfUsers].Username,
@@ -94,7 +92,7 @@ int ReadUsersData()
 	}
 
 	fclose(UsersData);
-	return numberOfUsers-1;
+	return numberOfUsers - 1;
 }
 
 int ReadDoctorsData(){

@@ -28,7 +28,7 @@ int get_integer(char *str, int *n)
 	return *n;
 }
 
-int get_double(char *str, double *n)
+double get_double(char *str, double *n)
 {
 	bool valid = false;
 	while (!valid)
@@ -47,7 +47,7 @@ int get_double(char *str, double *n)
 	return *n;
 }
 
-void search_doctor(int size) // function takes array of structs of "doctors" and its size
+void search_doctor(int size) // function takes array of structs of "Doctors" and its size
 {
 	// variable containing the search the user inputs
 	char search[1000];
@@ -60,6 +60,7 @@ start:
 	printf("4. Search by Visita\n");
 	printf("5. Show All Doctors\n");
 	printf("6. Logout\n\n");
+	printf("\t\t\t\t============================\n");
 	get_integer("Your Choice : ", &choice);
 	bool byname = false, byspeciality = false, byvisita = false, byaddress = false, byall = false, logout = false;
 	double visita_from, visita_to;
@@ -88,7 +89,6 @@ getting_property:
 		break;
 	case 6:
 		logout = true;
-		printf("Goodbye!\n");
 		goto end;
 		break;
 	default:
@@ -97,10 +97,11 @@ getting_property:
 	}
 	// Getting the user input
 	if (!byall && !byvisita)
+	{
 		fgets(search, 1000, stdin);
-	// Changing the last character in the user input from '\n' to null-terminator
-	if (search[strlen(search) - 1] == '\n')
+		// Changing the last character in the user input from '\n' to null-terminator
 		search[strlen(search) - 1] = '\0';
+	}
 	// The actual search procedures
 	int found_count = 0;
 	int ContinueChoice;
@@ -131,7 +132,7 @@ getting_property:
 			printf("Name: %s\n", Doctors[i].Name);
 			printf("Speciality: %s\n", Doctors[i].Speciality);
 			printf("Clinic Address: %s\n", Doctors[i].Clinic_address);
-			printf("Visita: %.2lf\n\n\n", Doctors[i].Visita);
+			printf("Visita: %.2lf\n\n", Doctors[i].Visita);
 		}
 	}
 	if (found_count == 0)
@@ -141,12 +142,25 @@ getting_property:
 	}
 	else
 	{
-	ContinueChoice :
-		printf("Do You Want to Search Again?\n\n");
-		printf("1. Search With Same Criteria\n");
-		printf("2. Search With Different Criteria\n");
-		printf("3. Logout\n\n");
-		get_integer("Your Choice : ", &choice);
+	ContinueChoice:
+		printf("Do You Want to Search Again? (Y for Yes, N for No): ");
+		char search_again;
+		scanf("%c%*c", &search_again);
+		if (tolower(search_again) == 'n') goto end;
+		else if (tolower(search_again) == 'y')
+		{
+			printf("\n\t\t\t\t========== Search ==========\n");
+			printf("1. Search With Same Criteria.\n");
+			printf("2. Search With Different Criteria.\n");
+			printf("3. Logout\n\n");
+			printf("\t\t\t\t============================\n");
+			get_integer("Your Choice : ", &choice);
+		}
+		else
+		{
+			printf("Invalid Option\n");
+			goto ContinueChoice;
+		}
 		switch (choice)
 		{
 		case 1:
@@ -157,7 +171,6 @@ getting_property:
 			break;
 		case 3:
 			logout = true;
-			printf("Goodbye!\n");
 			goto end;
 			break;
 		default:
@@ -167,7 +180,7 @@ getting_property:
 	}
 end:
 {
-	printf("");
+	printf("Goodbye!\n");
 }
 }
 
