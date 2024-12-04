@@ -1,11 +1,11 @@
 #include <stdio.h>
-#include "SignUp.c"
+#include "Search.c" 
+//Baiscally Search includes login, login includes signup, signup includes readfunctions
+//which makes including search only in main valid!
 
 int main()
 {
     ReadDoctorsData();
-    //There was a mistake here causing Double counting 
-    //This happend because the function was called twice (one like the doctors and the other inside the condition)
     if (ReadUsersData() == -1)
     {
         printf("Error Reading Users File !");
@@ -16,8 +16,6 @@ int main()
 
     printf("\n\t\t\t\t========== Welcome to the  System ==========\n");
 
-    printf("\nCurrent Users = %d\n",numberOfUsers);
-    printf("\nCurrent Doctors = %d\n",numberOfdoctors);
     printf("\nPlease choose your operation:\n");
 
     if (numberOfUsers >= 10)
@@ -34,7 +32,8 @@ int main()
             switch (choice)
             {
             case 1:
-                // login();
+                login();
+                search_doctor(numberOfdoctors);
                 break;
             case 2:
                 printf("Goodbye!");
@@ -63,7 +62,8 @@ int main()
                 Signup();
                 break;
             case 2:
-                // login();
+               login();
+               search_doctor(numberOfdoctors);
                 break;
             case 3:
                 printf("Goodbye!");
