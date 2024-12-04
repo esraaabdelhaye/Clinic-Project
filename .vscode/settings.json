@@ -57,6 +57,8 @@
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
-    "stdio.h": "c"
+    "*.rmd": "markdown",
+    "stdio.h": "c",
+    "algorithm": "c"
   }
 }

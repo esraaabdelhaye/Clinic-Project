@@ -27,7 +27,7 @@ int get_integer(char *str, int *n)
     return *n;
 }
 
-int get_double(char *str, double *n)
+double get_double(char *str, double *n)
 {
     bool valid = false;
     while (!valid)
