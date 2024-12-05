@@ -103,6 +103,7 @@ void login()
         else{
             LoginComplete = false;
         }
+        UsernameFound =false;
 }
 
 
