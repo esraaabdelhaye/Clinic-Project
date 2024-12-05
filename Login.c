@@ -14,6 +14,13 @@ StartOfgetpass:
     printf("\033[0m");
     char showPassword;
     scanf("%c", &showPassword);
+    if (showPassword == '\n')
+	{
+		printf("\033[0;31m");
+		printf("Wrong Choice. Try again.\n");
+		printf("\033[0m");
+		goto StartOfgetpass;
+	}
     clearInputBuffer(); // Clear input buffer
 
     if (tolower(showPassword) == 'y')

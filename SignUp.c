@@ -65,6 +65,13 @@ StartOfgetpass:
 	printf("\033[0m");
 	char showPassword;
 	scanf("%c", &showPassword);
+	if (showPassword == '\n')
+	{
+		printf("\033[0;31m");
+		printf("Wrong Choice. Try again.\n");
+		printf("\033[0m");
+		goto StartOfgetpass;
+	}
 	clearInputBuffer(); // Clear input buffer
 
 	if (tolower(showPassword) == 'y')
@@ -108,7 +115,7 @@ StartOfgetpass:
 	else
 	{
 		printf("\033[0;31m");
-		printf("Wrong Choice. Try again.");
+		printf("Wrong Choice. Try again.\n");
 		printf("\033[0m");
 		goto StartOfgetpass;
 	}
@@ -134,14 +141,14 @@ StartOfgetpass:
 	if (!(hasNumeric && hasSymbol&&haslwr&&hasUpper))
 	{
 		printf("\033[0;31m");
-		printf("Password must contain at least one symbol , one numeric value,one uppercase and one uppercase. Please try again.\n");
+		printf("\nPassword must contain at least one symbol , one numeric value,one uppercase and one uppercase. Please try again.\n");
 		printf("\033[0m");
 		goto StartOfgetpass;
 	}
 	else if (strlen(password) < 8)
 	{
 		printf("\033[0;31m");
-		printf("Password must Should Have at least 8 characters. Please try again.\n");
+		printf("\nPassword must Should Have at least 8 characters. Please try again.\n");
 		printf("\033[0m");
 		goto StartOfgetpass;
 	}
