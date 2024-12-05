@@ -178,7 +178,7 @@ getusr:
 		if (PatientUsername[i] == ' ' || PatientUsername[i] == '.' || PatientUsername[i] == '!' || PatientUsername[i] == '?' || PatientUsername[i] == ',' || PatientUsername[i] == '$' || PatientUsername[i] == '/')
 		{
 			printf("\033[0;31m");
-			printf("\nUsername Can't Contain spaces or (./,/;/!/? or /).\n");
+			printf("Username Can't Contain spaces or (./,/;/!/? or /).\n");
 			printf("\033[0m");
 			goto getusr;
 		}
@@ -189,28 +189,28 @@ getusr:
 	if (UsernameDuplicated)
 	{
 		printf("\033[0;31m");
-		printf("\nThis Username is already Used.\n");
+		printf("This Username is already Used.\n");
 		printf("\033[0m");
 		goto getusr;
 	}
 	if (PatientUsername[0] == '\n' || PatientUsername[0] == '\0')
 	{
 		printf("\033[0;31m");
-		printf("\nAll required fields Can't be left empty.\n");
+		printf("All required fields Can't be left empty.\n");
 		printf("\033[0m");
 		goto getusr;
 	}
 	if (strlen(PatientUsername) < 4 || strlen(PatientUsername) > 20)
 	{
 		printf("\033[0;31m");
-		printf("\nUsername Should Be between 4 and 20 characters.\n");
+		printf("Username Should Be between 4 and 20 characters.\n");
 		printf("\033[0m");
 		goto getusr;
 	}
 	if (PatientUsername[0] == ' ')
 	{
 		printf("\033[0;31m");
-		printf("\nUsername Can't start with spaces.\n");
+		printf("Username Can't start with spaces.\n");
 		printf("\033[0m");
 		goto getusr;
 	}
@@ -225,7 +225,7 @@ printf("\033[0;34m");
 		if (!(isalpha(PatientfullName[i]) || PatientfullName[i] == ' '))
 		{
 			printf("\033[0;31m");
-			printf("\nNames Can't Contain Special Characters .\n");
+			printf("Names Can't Contain Special Characters .\n");
 			printf("\033[0m");
 			goto getname;
 		}
@@ -233,14 +233,14 @@ printf("\033[0;34m");
 	if (PatientfullName[0] == ' ')
 	{
 		printf("\033[0;31m");
-		printf("\nName Can't start with spaces.\n");
+		printf("Name Can't start with spaces.\n");
 		printf("\033[0m");
 		goto getname;
 	}
 	if (PatientfullName[0] == '\0' || PatientfullName[0] == '\n')
 	{
 		printf("\033[0;31m");
-		printf("\nAll required fields Can't be left empty.\n");
+		printf("All required fields Can't be left empty.\n");
 		printf("\033[0m");
 		goto getname;
 	}

@@ -61,7 +61,7 @@ Menu:
 
             default:
                 printf("\033[0;31m");
-                printf("Invalid Choice! Please enter a number between 1 and 3.\n");
+                printf("Invalid Choice! Please enter a number between 1 and 2.\n");
                 printf("\033[0m");
                 continue;
             }
