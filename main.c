@@ -48,7 +48,7 @@ Menu:
                 else
                 {
                     printf("\033[0;31m");
-                    printf("Username Not Registered. SignUp first.");
+                    printf("\nUsername Not Registered. SignUp first.");
                     printf("\033[0m");
                     goto Menu;
                 }
@@ -96,7 +96,7 @@ Menu:
                 else
                 {
                     printf("\033[0;31m");
-                    printf("Username Not Registered. SignUp first.");
+                    printf("\nUsername Not Registered. SignUp first.");
                     printf("\033[0m");
                     goto Menu;
                 }

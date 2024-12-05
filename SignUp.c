@@ -78,7 +78,7 @@ StartOfgetpass:
 	else if (tolower(showPassword) == 'n')
 	{
 		printf("\033[0;34m");
-		printf("Enter your password (at least one symbol, one numeric value ,one uppercase and one uppercase required): ");
+		printf("Enter your password (at least one symbol, one numeric value ,one uppercase and one lowercase required): ");
 		printf("\033[0m");
 
 		while (1)
@@ -158,7 +158,7 @@ int Signup()
 	if (numberOfUsers >= 10)
 	{
 		printf("\033[0;31m");
-		printf("Sorry, We don't accept more patients");
+		printf("\nSorry, We don't accept more patients");
 		printf("\033[0m");
 		return 0;
 	}
@@ -178,7 +178,7 @@ getusr:
 		if (PatientUsername[i] == ' ' || PatientUsername[i] == '.' || PatientUsername[i] == '!' || PatientUsername[i] == '?' || PatientUsername[i] == ',' || PatientUsername[i] == '$' || PatientUsername[i] == '/')
 		{
 			printf("\033[0;31m");
-			printf("Username Can't Contain spaces or (./,/;/!/? or /).\n");
+			printf("\nUsername Can't Contain spaces or (./,/;/!/? or /).\n");
 			printf("\033[0m");
 			goto getusr;
 		}
@@ -189,28 +189,28 @@ getusr:
 	if (UsernameDuplicated)
 	{
 		printf("\033[0;31m");
-		printf("This Username is already Used.\n");
+		printf("\nThis Username is already Used.\n");
 		printf("\033[0m");
 		goto getusr;
 	}
 	if (PatientUsername[0] == '\n' || PatientUsername[0] == '\0')
 	{
 		printf("\033[0;31m");
-		printf("All required fields Can't be left empty.\n");
+		printf("\nAll required fields Can't be left empty.\n");
 		printf("\033[0m");
 		goto getusr;
 	}
 	if (strlen(PatientUsername) < 4 || strlen(PatientUsername) > 20)
 	{
 		printf("\033[0;31m");
-		printf("Username Should Be between 4 and 20 characters.\n");
+		printf("\nUsername Should Be between 4 and 20 characters.\n");
 		printf("\033[0m");
 		goto getusr;
 	}
 	if (PatientUsername[0] == ' ')
 	{
 		printf("\033[0;31m");
-		printf("Username Can't start with spaces.\n");
+		printf("\nUsername Can't start with spaces.\n");
 		printf("\033[0m");
 		goto getusr;
 	}
@@ -225,7 +225,7 @@ printf("\033[0;34m");
 		if (!(isalpha(PatientfullName[i]) || PatientfullName[i] == ' '))
 		{
 			printf("\033[0;31m");
-			printf("Names Can't Contain Special Characters .\n");
+			printf("\nNames Can't Contain Special Characters .\n");
 			printf("\033[0m");
 			goto getname;
 		}
@@ -233,14 +233,14 @@ printf("\033[0;34m");
 	if (PatientfullName[0] == ' ')
 	{
 		printf("\033[0;31m");
-		printf("Name Can't start with spaces.\n");
+		printf("\nName Can't start with spaces.\n");
 		printf("\033[0m");
 		goto getname;
 	}
 	if (PatientfullName[0] == '\0' || PatientfullName[0] == '\n')
 	{
 		printf("\033[0;31m");
-		printf("All required fields Can't be left empty.\n");
+		printf("\nAll required fields Can't be left empty.\n");
 		printf("\033[0m");
 		goto getname;
 	}
@@ -252,7 +252,7 @@ getpassw:
 		if (PatientPassword[i] == ' ' || PatientPassword[i] == '.' || PatientPassword[i] == '!' || PatientPassword[i] == '?' || PatientPassword[i] == ',' || PatientPassword[i] == '$' || PatientPassword[i] == '/')
 		{
 			printf("\033[0;31m");
-			printf("Password Can't Contain spaces or (./,/;/!/? or /).\n");
+			printf("\nPassword Can't Contain spaces or (./,/;/!/? or /).\n");
 			printf("\033[0m");
 			goto getpassw;
 		}
