@@ -20,7 +20,9 @@ int get_integer(char *str, int *n)
 		if (checker != 2 || newline_check != '\n')
 		{
 			delete_buffer();
+			printf("\033[0;31m");
 			printf("Invalid Input. Try again\n");
+			printf("\033[0m");
 		}
 		else
 			valid = true;
@@ -39,7 +41,9 @@ double get_double(char *str, double *n)
 		if (checker != 2 || newline_check != '\n')
 		{
 			delete_buffer();
+			printf("\033[0;31m");
 			printf("Invalid Input. Try Again.\n");
+			printf("\033[0m");
 		}
 		else
 			valid = true;
@@ -61,27 +65,37 @@ start:
 	printf("5. Show All Doctors\n");
 	printf("6. Logout\n\n");
 	printf("\t\t\t\t============================\n");
+	printf("\033[0;34m");
 	get_integer("Your Choice : ", &choice);
+	printf("\033[0m");
 	bool byname = false, byspeciality = false, byvisita = false, byaddress = false, byall = false, logout = false;
 	double visita_from, visita_to;
 getting_property:
 	switch (choice)
 	{
 	case 1:
+		printf("\033[0;34m");
 		printf("Name : ");
+		printf("\033[0m");
 		byname = true;
 		break;
 	case 2:
+		printf("\033[0;34m");
 		printf("Speciality : ");
+		printf("\033[0m");
 		byspeciality = true;
 		break;
 	case 3:
+		printf("\033[0;34m");
 		printf("Address : ");
+		printf("\033[0m");
 		byaddress = true;
 		break;
 	case 4:
+		printf("\033[0;34m");
 		get_double("Visita (PriceRange) - From : ", &visita_from);
 		get_double("Visita (PriceRange) - To : ", &visita_to);
+		printf("\033[0m");
 		byvisita = true;
 		break;
 	case 5:
@@ -92,7 +106,9 @@ getting_property:
 		goto end;
 		break;
 	default:
+	printf("\033[0;31m");
 		printf("Invalid Option. Try Again\n");
+		printf("\033[0m");
 		goto start;
 	}
 	// Getting the user input
@@ -119,7 +135,9 @@ getting_property:
 		{
 			// Showing the results that were found
 			found_count++;
+			printf("\033[0;32m");
 			printf("\n\t\t\t\t========== Result ==========\n");
+			printf("\033[0m");
 			printf("Name: %s\n", Doctors[i].Name);
 			printf("Speciality: %s\n", Doctors[i].Speciality);
 			printf("Clinic Address: %s\n", Doctors[i].Clinic_address);
@@ -128,13 +146,17 @@ getting_property:
 	}
 	if (found_count == 0)
 	{
+		printf("\033[0;31m");
 		printf("No Matching Results. Try Again.\n");
+		printf("\033[0m");
 		goto getting_property;
 	}
 	else
 	{
 	ContinueChoice:
+		printf("\033[0;35m");
 		printf("Do You Want to Search Again? (Y for Yes, L for Logout): ");
+		printf("\033[0m");
 		char search_again;
 		scanf("%c%*c", &search_again);
 		if (tolower(search_again) == 'l') goto end;
@@ -145,11 +167,15 @@ getting_property:
 			printf("2. Search With Different Criteria.\n");
 			printf("3. Logout\n\n");
 			printf("\t\t\t\t============================\n");
+			printf("\033[0;34m");
 			get_integer("Your Choice : ", &choice);
+			printf("\033[0m");
 		}
 		else
 		{
+			printf("\033[0;31m");
 			printf("Invalid Option\n");
+			printf("\033[0m");
 			goto ContinueChoice;
 		}
 		switch (choice)
@@ -165,12 +191,16 @@ getting_property:
 			goto end;
 			break;
 		default:
+			printf("\033[0;31m");
 			printf("Invalid Option\n");
+			printf("\033[0m");
 			goto ContinueChoice;
 		}
 	}
 end:
 {
+	printf("\033[0;31m");
 	printf("\nLogging Out...\n");
+	printf("\033[0m");
 }
 }

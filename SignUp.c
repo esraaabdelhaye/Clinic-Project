@@ -4,19 +4,16 @@
 #include <conio.h>
 #include "ReadingFunctions.c"
 
-// this function Should only run when validations are complete and we want to write User's Data from the array
-//  Returns -1 in case of an error
-
 int UsernameCheckForExistance(char Searching[])
 {
 	for (int i = 0; i < numberOfUsers; i++)
 	{
 		if (!strcmp(Searching, Users[i].Username))
 		{
-			return 1; 
+			return 1;
 		}
 	}
-	return 0; 
+	return 0;
 }
 int PasswordCheckForExistance(char Searching[])
 {
@@ -24,10 +21,10 @@ int PasswordCheckForExistance(char Searching[])
 	{
 		if (!strcmp(Searching, Users[i].Password))
 		{
-			return 1; 
+			return 1;
 		}
 	}
-	return 0; 
+	return 0;
 }
 // This Password Check isn't really required Here,but would be useful in login
 
@@ -42,7 +39,7 @@ The Changes I made to this function :
 2.I made the user choose wether to show password or not before actually typing the password
 3.Obviouslly as we're getting the password with two different ways ,It was essential that the check of validation be after the if-else condition
 of the two ways.
-4.all this time the password retrived is stored into a temporary password "string" until it's validated 
+4.all this time the password retrived is stored into a temporary password "string" until it's validated
 Then it gets stored in the array That's pointer was passed to the function.
 
 */
@@ -54,27 +51,36 @@ int getPassword(char *Pass)
 	char ch;
 	int hasNumeric; // Flag to track if password contains at least one numeric value
 	int hasSymbol;	// Flag to track if password contains at least one symbol
-	StartOfgetpass:
+	int hasUpper;
+	int haslwr ;
+StartOfgetpass:
 
 	hasNumeric = 0;
 	hasSymbol = 0;
+	hasUpper =0;
+	haslwr =0;
 	// Show option to display password
-
+	printf("\033[0;35m");
 	printf("\nDo you want to show your password? (Y for Yes, N for No): ");
+	printf("\033[0m");
 	char showPassword;
 	scanf("%c", &showPassword);
 	clearInputBuffer(); // Clear input buffer
 
-	
 	if (tolower(showPassword) == 'y')
 	{
+		printf("\033[0;34m");
 		printf("Enter your password (at least one symbol and one numeric value required): ");
+		printf("\033[0m");
 		fgets(password, 250, stdin);
 		password[strlen(password) - 1] = '\0';
 	}
 	else if (tolower(showPassword) == 'n')
 	{
-		printf("Enter your password (at least one symbol and one numeric value required): ");
+		printf("\033[0;34m");
+		printf("Enter your password (at least one symbol, one numeric value ,one uppercase and one uppercase required): ");
+		printf("\033[0m");
+
 		while (1)
 		{
 
@@ -99,8 +105,11 @@ int getPassword(char *Pass)
 			}
 		}
 	}
-	else{
+	else
+	{
+		printf("\033[0;31m");
 		printf("Wrong Choice. Try again.");
+		printf("\033[0m");
 		goto StartOfgetpass;
 	}
 	for (int i = 0; i < strlen(password); i++)
@@ -113,13 +122,30 @@ int getPassword(char *Pass)
 		{
 			hasNumeric = 1;
 		}
+		if(isupper(password[i])){
+			hasUpper = 1;
+		}
+		if (islower(password[i])){
+			haslwr =1;
+		}
 	}
 	// Validate password complexity
-	if (!(hasNumeric && hasSymbol))
+
+	if (!(hasNumeric && hasSymbol&&haslwr&&hasUpper))
 	{
-		printf("Password must contain at least one symbol and one numeric value. Please try again.\n");
+		printf("\033[0;31m");
+		printf("Password must contain at least one symbol , one numeric value,one uppercase and one uppercase. Please try again.\n");
+		printf("\033[0m");
 		goto StartOfgetpass;
 	}
+	else if (strlen(password) < 8)
+	{
+		printf("\033[0;31m");
+		printf("Password must Should Have at least 8 characters. Please try again.\n");
+		printf("\033[0m");
+		goto StartOfgetpass;
+	}
+
 	else
 	{
 		strcpy(Pass, password);
@@ -131,50 +157,119 @@ int Signup()
 	// can't add another patient
 	if (numberOfUsers >= 10)
 	{
+		printf("\033[0;31m");
 		printf("Sorry, We don't accept more patients");
+		printf("\033[0m");
 		return 0;
 	}
 
-	int CurrentUser; // Tracking The index of the current User
-
-	int UsernameVerified = 0;
+	int UsernameDuplicated = 0;
 	// Flags to Track Whether Verification Was Complete or not
 
-	int Status = ReadUsersData();
-	if (Status != -1)
-	{
-		CurrentUser = numberOfUsers - 1;
-	}
 	char PatientfullName[250];
 	char PatientUsername[250];
 	char PatientPassword[250];
-get_input:
+getusr:
 	printf("Enter Your Username: ");
 	fgets(PatientUsername, 250, stdin);
 	PatientUsername[strlen(PatientUsername) - 1] = '\0';
+	for (int i = 0; i < strlen(PatientUsername); i++)
+	{
+		if (PatientUsername[i] == ' ' || PatientUsername[i] == '.' || PatientUsername[i] == '!' || PatientUsername[i] == '?' || PatientUsername[i] == ',' || PatientUsername[i] == '$' || PatientUsername[i] == '/')
+		{
+			printf("\033[0;31m");
+			printf("Username Can't Contain spaces or (./,/;/!/? or /).\n");
+			printf("\033[0m");
+			goto getusr;
+		}
+	}
 
+	UsernameDuplicated = UsernameCheckForExistance(PatientUsername); // zero here means it's verified
+
+	if (UsernameDuplicated)
+	{
+		printf("\033[0;31m");
+		printf("This Username is already Used.\n");
+		printf("\033[0m");
+		goto getusr;
+	}
+	if (PatientUsername[0] == '\n' || PatientUsername[0] == '\0')
+	{
+		printf("\033[0;31m");
+		printf("All required fields Can't be left empty.\n");
+		printf("\033[0m");
+		goto getusr;
+	}
+	if (strlen(PatientUsername) < 4 || strlen(PatientUsername) > 20)
+	{
+		printf("\033[0;31m");
+		printf("Username Should Be between 4 and 20 characters.\n");
+		printf("\033[0m");
+		goto getusr;
+	}
+	if (PatientUsername[0] == ' ')
+	{
+		printf("\033[0;31m");
+		printf("Username Can't start with spaces.\n");
+		printf("\033[0m");
+		goto getusr;
+	}
+getname:
+printf("\033[0;34m");
 	printf("Enter Your Full Name: ");
+	printf("\033[0m");
 	fgets(PatientfullName, 250, stdin);
 	PatientfullName[strlen(PatientfullName) - 1] = '\0';
-
+	for (int i = 0; i < strlen(PatientfullName); i++)
+	{
+		if (!(isalpha(PatientfullName[i]) || PatientfullName[i] == ' '))
+		{
+			printf("\033[0;31m");
+			printf("Names Can't Contain Special Characters .\n");
+			printf("\033[0m");
+			goto getname;
+		}
+	}
+	if (PatientfullName[0] == ' ')
+	{
+		printf("\033[0;31m");
+		printf("Name Can't start with spaces.\n");
+		printf("\033[0m");
+		goto getname;
+	}
+	if (PatientfullName[0] == '\0' || PatientfullName[0] == '\n')
+	{
+		printf("\033[0;31m");
+		printf("All required fields Can't be left empty.\n");
+		printf("\033[0m");
+		goto getname;
+	}
+getpassw:
 	getPassword(PatientPassword);
 
-	UsernameVerified = UsernameCheckForExistance(PatientUsername);
+	for (int i = 0; i < strlen(PatientPassword); i++)
+	{
+		if (PatientPassword[i] == ' ' || PatientPassword[i] == '.' || PatientPassword[i] == '!' || PatientPassword[i] == '?' || PatientPassword[i] == ',' || PatientPassword[i] == '$' || PatientPassword[i] == '/')
+		{
+			printf("\033[0;31m");
+			printf("Password Can't Contain spaces or (./,/;/!/? or /).\n");
+			printf("\033[0m");
+			goto getpassw;
+		}
+	}
 
-	if (!UsernameVerified)
+	strcpy(Users[numberOfUsers].Username, PatientUsername);
+	strcpy(Users[numberOfUsers].Name, PatientfullName);
+	strcpy(Users[numberOfUsers].Password, PatientPassword);
+	FILE *PatientsFile = fopen("User_Data.txt", "a");
+	fprintf(PatientsFile, "%s,%s,%s", Users[numberOfUsers].Username, Users[numberOfUsers].Name, Users[numberOfUsers].Password);
+	if (numberOfUsers + 1 != 10)
 	{
-		strcpy(Users[CurrentUser].Username, PatientUsername);
-		strcpy(Users[CurrentUser].Name, PatientfullName);
-		strcpy(Users[CurrentUser].Password, PatientPassword);
-		FILE *PatientsFile = fopen("User_Data.txt", "a");
-		fprintf(PatientsFile, "\n%s,%s,%s", Users[CurrentUser].Username, Users[CurrentUser].Name, Users[CurrentUser].Password);
-		fclose(PatientsFile);
-		printf("\nSuccessfully Signed Up! Now Login to Use the app\n");
-		CurrentUser++;
+		fprintf(PatientsFile, "\n");
 	}
-	else
-	{
-		printf("This Username is already Used.\n");
-		goto get_input;
-	}
+	fclose(PatientsFile);
+	printf("\033[0;32m");
+	printf("\nSuccessfully Signed Up! Now Login to Use the app\n");
+	printf("\033[0m");
+	numberOfUsers++;
 }

@@ -9,20 +9,26 @@ int getLoginPassword(char *Pass)
     char ch;
 StartOfgetpass:
     // Show option to display password
+    printf("\033[0;35m");
     printf("\nDo you want to show your password? (Y for Yes, N for No): ");
+    printf("\033[0m");
     char showPassword;
     scanf("%c", &showPassword);
     clearInputBuffer(); // Clear input buffer
 
     if (tolower(showPassword) == 'y')
     {
+        printf("\033[0;34m");
         printf("Enter your password : ");
+        printf("\033[0m");
         fgets(password, 250, stdin);
         password[strlen(password) - 1] = '\0';
     }
     else if (tolower(showPassword) == 'n')
     {
+        printf("\033[0;34m");
         printf("Enter your password : ");
+        printf("\033[0m");
         while (1)
         {
 
@@ -49,7 +55,9 @@ StartOfgetpass:
     }
     else
     {
+        printf("\033[0;31m");
 		printf("Wrong Choice. Try again.");
+        printf("\033[0m");
 		goto StartOfgetpass;
 	}
     strcpy(Pass, password);
@@ -80,24 +88,37 @@ void login()
     char Password[250];
     int choice;
 
-    printf("\n\t\t\t\t\t\t========== Login ==========\n");
+    printf("\n\t\t\t========== Login ==========\n");
         // clearInputBuffer(); // Clear input buffer
-
+    logingetusr:
+        printf("\033[0;34m");
         printf("Enter your username: ");
+        printf("\033[0m");
         fgets(Username, sizeof(Username), stdin);
         Username[strcspn(Username, "\n")] = '\0';
+        if (Username[0] == '\n' || Username[0] == '\0')
+	{
+        printf("\033[0;31m");
+		printf("All required fields Can't be left empty.\n");
+        printf("\033[0m");
+		goto logingetusr;
+	}
         PasswordEntry:
         getLoginPassword(Password);
         // Authenticate user
 
         if (LoginVA(Username,Password))
         {
+            printf("\033[0;32m");
             printf("\nLogged in successfully!\n");
+            printf("\033[0m");
             LoginComplete = true;
         }
         else if ((!LoginVA(Username,Password))&&UsernameFound)
         {
+            printf("\033[0;31m");
             printf("\nInvalid password.\n");
+            printf("\033[0m");
             goto PasswordEntry;
         }
         else{
