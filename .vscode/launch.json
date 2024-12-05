@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/CSED/First Year/Programming_1/Clinic-Project",
-      "program": "d:/CSED/First Year/Programming_1/Clinic-Project/build/Debug/outDebug",
+      "cwd": "d:/Engineering University/CSED/3rd semester/Programming 1/Lab/Project 1/Clinic-Project",
+      "program": "d:/Engineering University/CSED/3rd semester/Programming 1/Lab/Project 1/Clinic-Project/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
