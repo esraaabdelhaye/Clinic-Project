@@ -85,7 +85,6 @@ Menu:
                     printf("Username Not Registered. SignUp first.");
                     goto Menu;
                 }
-                search_doctor(numberOfdoctors);
                 break;
             case 3:
                 printf("Goodbye!");
