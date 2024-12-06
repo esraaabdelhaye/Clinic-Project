@@ -29,7 +29,6 @@ int get_integer(char *str, int *n)
 		else
 			valid = true;
 	}
-	return *n;
 }
 
 double get_double(char *str, double *n)
@@ -52,7 +51,6 @@ double get_double(char *str, double *n)
 		else
 			valid = true;
 	}
-	return *n;
 }
 
 void search_doctor(int numberOfdoctors) // function takes array of structs of "Doctors" and its size
