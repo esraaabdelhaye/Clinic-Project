@@ -11,7 +11,6 @@ int main()
         printf("Error Reading Users File !");
         return 1;
     }
-
     int choice;
 Menu:
     printf("\n\t\t========== Welcome to the  System ==========\n");
@@ -22,7 +21,6 @@ Menu:
     printf("\nPlease choose your operation:\n");
     printf("\033[0m");
 
-    char newline;
     if (numberOfUsers >= 10)
     {
         do
@@ -35,12 +33,19 @@ Menu:
             printf("\033[0;34m");
             printf("\nYour Choice: ");
             printf("\033[0m");
-            int scancheck = scanf("%d%c", &choice, &newline);
-            if (scancheck != 2 || newline != '\n'||choice=='\n')
-            {
+            char choiceinput[1000];
+            fgets(choiceinput, 1000, stdin);
+            choiceinput[strlen(choiceinput) - 1] = '\0';
+            if (strlen(choiceinput) != 1)
                 choice = 10;
-                clearInputBuffer(); // Clear input buffer
-            }
+            else
+                choice = atoi(choiceinput);
+            // int scancheck = scanf("%d%c", &choice, &newline);
+            // if (scancheck != 2 || newline != '\n'||choice=='\n')
+            // {
+            //     choice = 10;
+            //     clearInputBuffer(); // Clear input buffer
+            // }
 
             switch (choice)
             {
@@ -83,12 +88,19 @@ Menu:
             printf("\033[0;34m");
             printf("\nYour Choice: ");
             printf("\033[0m");
-            int scancheck = scanf("%d%c", &choice, &newline);
-            if (scancheck != 2 || newline != '\n')
-            {
+            char choiceinput[1000];
+            fgets(choiceinput, 1000, stdin);
+            choiceinput[strlen(choiceinput) - 1] = '\0';
+            if (strlen(choiceinput) != 1)
                 choice = 10;
-                clearInputBuffer(); // Clear input buffer
-            }
+            else
+                choice = atoi(choiceinput);
+            // int scancheck = scanf("%d%c", &choice, &newline);
+            // if (scancheck != 2 || newline != '\n')
+            // {
+            //     choice = 10;
+            //     clearInputBuffer(); // Clear input buffer
+            // }
 
             switch (choice)
             {

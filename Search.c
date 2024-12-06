@@ -14,20 +14,44 @@ int get_integer(char *str, int *n)
 	bool valid = false;
 	while (!valid)
 	{
+		bool not_isdigit = false;
 		printf("\033[0;34m");
 		printf("%s", str);
 		printf("\033[0m");
-		char newline_check;
-		int checker = scanf("%d%c", n, &newline_check);
-		if (checker != 2 || newline_check != '\n')
+		char input[1000];
+		fgets(input, 1000, stdin);
+		input[strlen(input) - 1] = '\0';
+		if (strlen(input) > 0)
 		{
-			delete_buffer();
+			for (int i = 0; i < strlen(input); i++)
+			{
+				if (!isdigit(input[i]))
+				{
+					not_isdigit = true;
+					break;
+				}
+			}
+		}
+		else
+		{
 			printf("\033[0;31m");
 			printf("Invalid Input. Try again\n");
 			printf("\033[0m");
+			valid = false;
+			continue;
+		}
+		if (not_isdigit)
+		{
+			printf("\033[0;31m");
+			printf("Invalid Input. Try again\n");
+			printf("\033[0m");
+			valid = false;
 		}
 		else
+		{
+			*n = atoi(input);
 			valid = true;
+		}
 	}
 }
 
@@ -176,7 +200,19 @@ getting_property:
 		printf("Do You Want to Search Again? (Y for Yes, L for Logout): ");
 		printf("\033[0m");
 		char search_again;
-		scanf("%c%*c", &search_again);
+		char search_again_input[1000];
+		fgets(search_again_input, 1000, stdin);
+		search_again_input[strlen(search_again_input) - 1] = '\0';
+		if (strlen(search_again_input) != 1)
+		{
+			printf("\033[0;31m");
+			printf("Invalid Option\n");
+			printf("\033[0m");
+			goto ContinueChoice;
+		}
+		search_again = search_again_input[0];
+
+		int second_choice;
 		if (tolower(search_again) == 'l')
 			goto end;
 		else if (tolower(search_again) == 'y')
@@ -187,7 +223,7 @@ getting_property:
 			printf("3. Logout\n\n");
 			printf("\t\t\t\t============================\n");
 			printf("\033[0;34m");
-			get_integer("Your Choice : ", &choice);
+			get_integer("Your Choice : ", &second_choice);
 			printf("\033[0m");
 		}
 		else
@@ -197,7 +233,7 @@ getting_property:
 			printf("\033[0m");
 			goto ContinueChoice;
 		}
-		switch (choice)
+		switch (second_choice)
 		{
 		case 1:
 			goto getting_property;

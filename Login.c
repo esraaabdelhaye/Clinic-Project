@@ -3,11 +3,12 @@
 
 int getLoginPassword(char *Pass)
 {
-
-    int i = 0;
+    int i;
     char password[250];
     char ch;
 StartOfgetpass:
+    for (int i = 0; strlen(password); i++) password[i] = '\0';
+    i = 0;
     // Show option to display password
     printf("\033[0;35m");
     printf("\nDo you want to show your password? (Y for Yes, N for No): ");

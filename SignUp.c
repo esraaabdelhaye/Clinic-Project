@@ -45,7 +45,6 @@ Then it gets stored in the array That's pointer was passed to the function.
 */
 int getPassword(char *Pass)
 {
-
 	int i;
 	char password[250];
 	char ch;
@@ -54,6 +53,8 @@ int getPassword(char *Pass)
 	int hasUpper;
 	int haslwr;
 StartOfgetpass:
+	for (int i = 0; strlen(password); i++) password[i] = '\0';
+
 	i = 0;
 	hasNumeric = 0;
 	hasSymbol = 0;

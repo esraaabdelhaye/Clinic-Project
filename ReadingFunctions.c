@@ -179,7 +179,7 @@ int ReadDoctorsData()
 	do
 	{
 		read = fscanf(DoctorsData,
-					  "%250[^/]/%250[^/]/%250[^/]/%lf",
+					  "%250[^/]/%250[^/]/%250[^/]/%lf%*c",
 					  &Doctors[numberOfdoctors].Name,
 					  &Doctors[numberOfdoctors].Speciality,
 					  &Doctors[numberOfdoctors].Clinic_address,
