@@ -46,7 +46,7 @@ Then it gets stored in the array That's pointer was passed to the function.
 int getPassword(char *Pass)
 {
 
-	int i = 0;
+	int i;
 	char password[250];
 	char ch;
 	int hasNumeric; // Flag to track if password contains at least one numeric value
@@ -54,7 +54,7 @@ int getPassword(char *Pass)
 	int hasUpper;
 	int haslwr ;
 StartOfgetpass:
-
+	i = 0;
 	hasNumeric = 0;
 	hasSymbol = 0;
 	hasUpper =0;
@@ -74,7 +74,7 @@ StartOfgetpass:
 	}
 	clearInputBuffer(); // Clear input buffer
 
-	if (tolower(showPassword) == 'y')
+	if (tolower(showPassword) == "y")
 	{
 		printf("\033[0;34m");
 		printf("Enter your password (at least one symbol, one numeric value ,one uppercase and one lowercase required): ");

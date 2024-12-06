@@ -65,6 +65,7 @@ StartOfgetpass:
         printf("\033[0;31m");
 		printf("Wrong Choice. Try again.");
         printf("\033[0m");
+        i=0;
 		goto StartOfgetpass;
 	}
     strcpy(Pass, password);
