@@ -16,8 +16,8 @@ int main()
 Menu:
     printf("\n\t\t========== Welcome to the  System ==========\n");
     printf("\033[0;32m");
-    printf("Active Users: %d\n",numberOfUsers);
-    printf("Active Doctors: %d\n",numberOfdoctors);
+    printf("Active Users: %d\n", numberOfUsers);
+    printf("Active Doctors: %d\n", numberOfdoctors);
     printf("\033[0;34m");
     printf("\nPlease choose your operation:\n");
     printf("\033[0m");
@@ -36,7 +36,7 @@ Menu:
             printf("\nYour Choice: ");
             printf("\033[0m");
             int scancheck = scanf("%d%c", &choice, &newline);
-            if (scancheck != 2 || newline != '\n')
+            if (scancheck != 2 || newline != '\n'||choice=='\n')
             {
                 choice = 10;
                 clearInputBuffer(); // Clear input buffer
@@ -124,8 +124,6 @@ Menu:
         } while (1);
     }
 }
-
-
 
 /*
 color guide

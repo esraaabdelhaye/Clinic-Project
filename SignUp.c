@@ -52,29 +52,32 @@ int getPassword(char *Pass)
 	int hasNumeric; // Flag to track if password contains at least one numeric value
 	int hasSymbol;	// Flag to track if password contains at least one symbol
 	int hasUpper;
-	int haslwr ;
+	int haslwr;
 StartOfgetpass:
 	i = 0;
 	hasNumeric = 0;
 	hasSymbol = 0;
-	hasUpper =0;
-	haslwr =0;
+	hasUpper = 0;
+	haslwr = 0;
 	// Show option to display password
 	printf("\033[0;35m");
 	printf("\nDo you want to show your password? (Y for Yes, N for No): ");
 	printf("\033[0m");
 	char showPassword;
-	scanf("%c", &showPassword);
-	if (showPassword == '\n')
-	{
-		printf("\033[0;31m");
-		printf("Wrong Choice. Try again.\n");
-		printf("\033[0m");
-		goto StartOfgetpass;
-	}
-	clearInputBuffer(); // Clear input buffer
+    char showPasswordInput[1000];
+    fgets(showPasswordInput, 1000, stdin);
+    showPasswordInput[strlen(showPasswordInput) - 1] = '\0';
+    if (strlen(showPasswordInput) != 1)
+    {
+        printf("\033[0;31m");
+        printf("Wrong Choice. Try again.\n");
+        printf("\033[0m");
+        goto StartOfgetpass;
+    }
+    showPassword = showPasswordInput[0]; 
+	//clearInputBuffer(); // Clear input buffer
 
-	if (tolower(showPassword) == "y")
+	if (tolower(showPassword) == 'y')
 	{
 		printf("\033[0;34m");
 		printf("Enter your password (at least one symbol, one numeric value ,one uppercase and one lowercase required): ");
@@ -129,16 +132,18 @@ StartOfgetpass:
 		{
 			hasNumeric = 1;
 		}
-		if(isupper(password[i])){
+		if (isupper(password[i]))
+		{
 			hasUpper = 1;
 		}
-		if (islower(password[i])){
-			haslwr =1;
+		if (islower(password[i]))
+		{
+			haslwr = 1;
 		}
 	}
 	// Validate password complexity
 
-	if (!(hasNumeric && hasSymbol&&haslwr&&hasUpper))
+	if (!(hasNumeric && hasSymbol && haslwr && hasUpper))
 	{
 		printf("\033[0;31m");
 		printf("\nPassword must contain at least one symbol , one numeric value, one uppercase and one lowercase. Please try again.\n");
@@ -222,7 +227,7 @@ getusr:
 		goto getusr;
 	}
 getname:
-printf("\033[0;34m");
+	printf("\033[0;34m");
 	printf("Enter Your Full Name: ");
 	printf("\033[0m");
 	fgets(PatientfullName, 250, stdin);

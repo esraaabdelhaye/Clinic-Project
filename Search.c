@@ -114,10 +114,12 @@ getting_property:
 		goto start;
 	}
 	// Getting the user input
-	if (!byall && !byvisita) fgets(search, 1000, stdin);
-		// Changing the last character in the user input from '\n' to null-terminator
-	if (search[strlen(search)-1] == '\n') search[strlen(search)-1] = '\0';
-	if (strlen(search) == 1 && ispunct(search[0]))
+	if (!byall && !byvisita)
+		fgets(search, 1000, stdin);
+	// Changing the last character in the user input from '\n' to null-terminator
+	if (search[strlen(search) - 1] == '\n')
+		search[strlen(search) - 1] = '\0';
+	if (ispunct(search[0]) || search[0] == ' ')
 	{
 		printf("\033[0;31m");
 		printf("Invalid Input. Try Again\n");
@@ -132,14 +134,21 @@ getting_property:
 		// initializing boolean value variable "found" to false which represents that target was found
 		bool found = false;
 		char *property = NULL;
-		if (byname) property = strdup(Doctors[i].Name);
-		else if (byspeciality) property = strdup(Doctors[i].Speciality);
-		else if (byaddress) property = strdup(Doctors[i].Clinic_address);
+		if (byname)
+			property = strdup(Doctors[i].Name);
+		else if (byspeciality)
+			property = strdup(Doctors[i].Speciality);
+		else if (byaddress)
+			property = strdup(Doctors[i].Clinic_address);
 		// Comparing with the lowercase status to see if the user input search is contained in any property
-		if (!byall && !byvisita) property = strstr(strlwr(property), strlwr(search));
-		if (property != NULL) found = true;
-		else if (byvisita && Doctors[i].Visita >= visita_from && Doctors[i].Visita <= visita_to) found = true;
-		else if (byall) found = true;
+		if (!byall && !byvisita)
+			property = strstr(strlwr(property), strlwr(search));
+		if (property != NULL)
+			found = true;
+		else if (byvisita && Doctors[i].Visita >= visita_from && Doctors[i].Visita <= visita_to)
+			found = true;
+		else if (byall)
+			found = true;
 		if (found)
 		{
 			// Showing the results that were found
@@ -168,7 +177,8 @@ getting_property:
 		printf("\033[0m");
 		char search_again;
 		scanf("%c%*c", &search_again);
-		if (tolower(search_again) == 'l') goto end;
+		if (tolower(search_again) == 'l')
+			goto end;
 		else if (tolower(search_again) == 'y')
 		{
 			printf("\n\t\t\t\t========== Search ==========\n");
