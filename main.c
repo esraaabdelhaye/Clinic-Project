@@ -22,6 +22,7 @@ Menu:
     printf("\nPlease choose your operation:\n");
     printf("\033[0m");
 
+    char newline;
     if (numberOfUsers >= 10)
     {
         do
@@ -34,8 +35,12 @@ Menu:
             printf("\033[0;34m");
             printf("\nYour Choice: ");
             printf("\033[0m");
-            scanf("%d", &choice);
-            clearInputBuffer(); // Clear input buffer
+            int scancheck = scanf("%d%c", &choice, &newline);
+            if (scancheck != 2 || newline != '\n')
+            {
+                choice = 10;
+                clearInputBuffer(); // Clear input buffer
+            }
 
             switch (choice)
             {
@@ -78,8 +83,12 @@ Menu:
             printf("\033[0;34m");
             printf("\nYour Choice: ");
             printf("\033[0m");
-            scanf("%d", &choice);
-            clearInputBuffer(); // Clear input buffer
+            int scancheck = scanf("%d%c", &choice, &newline);
+            if (scancheck != 2 || newline != '\n')
+            {
+                choice = 10;
+                clearInputBuffer(); // Clear input buffer
+            }
 
             switch (choice)
             {

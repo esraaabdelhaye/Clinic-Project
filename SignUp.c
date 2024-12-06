@@ -77,7 +77,7 @@ StartOfgetpass:
 	if (tolower(showPassword) == 'y')
 	{
 		printf("\033[0;34m");
-		printf("Enter your password (at least one symbol and one numeric value required): ");
+		printf("Enter your password (at least one symbol, one numeric value ,one uppercase and one lowercase required): ");
 		printf("\033[0m");
 		fgets(password, 250, stdin);
 		password[strlen(password) - 1] = '\0';
@@ -141,7 +141,7 @@ StartOfgetpass:
 	if (!(hasNumeric && hasSymbol&&haslwr&&hasUpper))
 	{
 		printf("\033[0;31m");
-		printf("\nPassword must contain at least one symbol , one numeric value,one uppercase and one uppercase. Please try again.\n");
+		printf("\nPassword must contain at least one symbol , one numeric value, one uppercase and one lowercase. Please try again.\n");
 		printf("\033[0m");
 		goto StartOfgetpass;
 	}
@@ -232,7 +232,7 @@ printf("\033[0;34m");
 		if (!(isalpha(PatientfullName[i]) || PatientfullName[i] == ' '))
 		{
 			printf("\033[0;31m");
-			printf("Names Can't Contain Special Characters .\n");
+			printf("Names Can't Contain Special Characters nor Numbers.\n");
 			printf("\033[0m");
 			goto getname;
 		}

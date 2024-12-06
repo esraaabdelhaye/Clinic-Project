@@ -14,7 +14,9 @@ int get_integer(char *str, int *n)
 	bool valid = false;
 	while (!valid)
 	{
+		printf("\033[0;34m");
 		printf("%s", str);
+		printf("\033[0m");
 		char newline_check;
 		int checker = scanf("%d%c", n, &newline_check);
 		if (checker != 2 || newline_check != '\n')
@@ -35,7 +37,9 @@ double get_double(char *str, double *n)
 	bool valid = false;
 	while (!valid)
 	{
+		printf("\033[0;34m");
 		printf("%s", str);
+		printf("\033[0m");
 		char newline_check;
 		int checker = scanf("%lf%c", n, &newline_check);
 		if (checker != 2 || newline_check != '\n')
@@ -106,7 +110,7 @@ getting_property:
 		goto end;
 		break;
 	default:
-	printf("\033[0;31m");
+		printf("\033[0;31m");
 		printf("Invalid Option. Try Again\n");
 		printf("\033[0m");
 		goto start;
@@ -115,6 +119,13 @@ getting_property:
 	if (!byall && !byvisita) fgets(search, 1000, stdin);
 		// Changing the last character in the user input from '\n' to null-terminator
 	if (search[strlen(search)-1] == '\n') search[strlen(search)-1] = '\0';
+	if (strlen(search) == 1 && ispunct(search[0]))
+	{
+		printf("\033[0;31m");
+		printf("Invalid Input. Try Again\n");
+		printf("\033[0m");
+		goto getting_property;
+	}
 	// The actual search procedures
 	int found_count = 0;
 	int ContinueChoice;
