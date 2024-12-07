@@ -160,7 +160,9 @@ int ReadUsersData()
 			return -1;
 		}
 	}
-
+	if (numberOfUsers>10){
+		return -1;
+	}
 	fclose(UsersData);
 	return 0;
 }
@@ -199,7 +201,9 @@ int ReadDoctorsData()
 		}
 
 	} while (!feof(DoctorsData));
-
+	if (numberOfdoctors>10){
+		return -1;
+	}
 	fclose(DoctorsData);
 }
 

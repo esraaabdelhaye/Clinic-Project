@@ -7,4 +7,4 @@ Dr. Frank Thomas/Pediatrician/987 Vision Rd Boston, MA/220.25
 Dr. Grace Lee/Cardiologist/159 Health Ave Seattle, WA/150.00
 Dr. Henry Brown/Dermatologist/753 Ear Nose Throat Blvd Denver, CO/210.50
 Dr. Isabella Wilson/Pediatrician/852 Women's Care Dr San Francisco, CA/280.00
-Dr. John Carter/Cardiologist/951 Mind Wellness Ln Austin, TX/400.00
+Dr. Vero Romany/Cardiologist/951 Mind Wellness Ln Austin, TX/400.00

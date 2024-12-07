@@ -143,6 +143,13 @@ getting_property:
 	// Changing the last character in the user input from '\n' to null-terminator
 	if (search[strlen(search) - 1] == '\n')
 		search[strlen(search) - 1] = '\0';
+	if (strlen(search) == 0 && !byall && !byvisita)
+	{
+		printf("\033[0;31m");
+		printf("Invalid Input. Try Again\n");
+		printf("\033[0m");
+		goto start;
+	}
 	if (ispunct(search[0]) || search[0] == ' ')
 	{
 		printf("\033[0;31m");
